@@ -3,45 +3,61 @@ import orderData from "@/content/order.json";
 
 export const HowToOrder = () => {
   return (
-    <section id="order" className="py-24 sm:py-32 bg-stone-50 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        {/* セクションタイトル */}
-        <div className="text-center space-y-2">
-          <span className="text-primary font-bold tracking-widest text-sm uppercase block">
-            {orderData.title}
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-stone-800 tracking-wider">
+    <section id="order" className="py-28 sm:py-36 bg-[#fdfbf7]">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
+
+        {/* セクションヘッダー */}
+        <div className="text-center mb-16">
+          <span className="section-eyebrow mx-auto">{orderData.title}</span>
+          <h2 className="text-3xl sm:text-4xl font-bold text-stone-900 tracking-wide mt-4">
             {orderData.subtitle}
           </h2>
         </div>
 
-        {/* ステップフロー */}
-        <div className="relative">
-          {/* PCでの接続ライン */}
-          <div className="hidden lg:block absolute top-1/2 left-4 right-4 h-0.5 bg-stone-200 -translate-y-1/2 z-0" />
+        {/* ステップ */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 relative">
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-8 relative z-10">
-            {orderData.steps.map((step, index) => (
-              <div
-                key={index}
-                className="flex flex-col items-center text-center bg-white rounded-2xl p-8 border border-stone-100 shadow-sm relative group hover:shadow-md transition-shadow duration-300"
-              >
-                {/* ステップ番号バッジ */}
-                <div className="absolute -top-6 left-1/2 -translate-x-1/2 h-12 w-12 rounded-full bg-primary text-white font-bold flex items-center justify-center text-lg tracking-wider shadow-md group-hover:scale-115 transition-transform duration-300">
-                  {step.stepNumber}
+          {orderData.steps.map((step, index) => (
+            <div key={index} className="relative flex flex-col lg:flex-row">
+              {/* ステップカード */}
+              <div className="flex-1 px-8 lg:px-10 py-10 lg:py-0 text-center flex flex-col items-center">
+                {/* 番号 */}
+                <div className="relative mb-6">
+                  <span className="text-[5rem] font-bold text-stone-100 leading-none select-none absolute -top-4 left-1/2 -translate-x-1/2 z-0">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div className="relative z-10 w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
+                    <span className="text-primary font-bold text-lg">{step.stepNumber}</span>
+                  </div>
                 </div>
 
-                <div className="mt-4 space-y-3">
-                  <h3 className="text-xl font-bold text-stone-850 tracking-wide">
-                    {step.title}
-                  </h3>
-                  <p className="text-stone-500 text-sm leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
+                <h3 className="text-lg font-bold text-stone-900 tracking-wide mb-3">
+                  {step.title}
+                </h3>
+                <p className="text-stone-500 text-sm leading-relaxed max-w-[220px]">
+                  {step.description}
+                </p>
               </div>
-            ))}
-          </div>
+
+              {/* 矢印 (最後以外) */}
+              {index < orderData.steps.length - 1 && (
+                <div className="hidden lg:flex items-center justify-center self-center">
+                  <svg className="w-5 h-5 text-stone-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              )}
+
+              {/* モバイル用縦矢印 */}
+              {index < orderData.steps.length - 1 && (
+                <div className="flex lg:hidden justify-center py-4">
+                  <svg className="w-5 h-5 text-stone-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </section>

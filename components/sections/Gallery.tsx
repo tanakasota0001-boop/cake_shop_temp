@@ -8,156 +8,133 @@ export const Gallery = () => {
 
   const openModal = (index: number) => {
     setSelectedImgIndex(index);
-    document.body.style.overflow = "hidden"; // スクロール防止
+    document.body.style.overflow = "hidden";
   };
 
   const closeModal = () => {
     setSelectedImgIndex(null);
-    document.body.style.overflow = ""; // スクロール再開
+    document.body.style.overflow = "";
   };
 
   const showNext = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (selectedImgIndex !== null) {
-      const nextIndex = (selectedImgIndex + 1) % galleryData.images.length;
-      setSelectedImgIndex(nextIndex);
+      setSelectedImgIndex((selectedImgIndex + 1) % galleryData.images.length);
     }
   };
 
   const showPrev = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (selectedImgIndex !== null) {
-      const prevIndex =
-        (selectedImgIndex - 1 + galleryData.images.length) % galleryData.images.length;
-      setSelectedImgIndex(prevIndex);
+      setSelectedImgIndex((selectedImgIndex - 1 + galleryData.images.length) % galleryData.images.length);
     }
   };
 
+  // Masonry-like layout: first image is wide
+  const images = galleryData.images;
+
   return (
-    <section id="gallery" className="py-24 sm:py-32 bg-stone-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        {/* セクションタイトル */}
-        <div className="text-center space-y-2">
-          <span className="text-primary font-bold tracking-widest text-sm uppercase block">
-            {galleryData.title}
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-stone-800 tracking-wider">
-            {galleryData.subtitle}
-          </h2>
+    <section id="gallery" className="py-28 sm:py-36 bg-stone-900">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
+
+        {/* セクションヘッダー */}
+        <div className="flex items-end justify-between mb-12">
+          <div className="space-y-3">
+            <span className="section-eyebrow-light">
+              {galleryData.title}
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-wide mt-3">
+              {galleryData.subtitle}
+            </h2>
+          </div>
+          <p className="text-stone-500 text-sm tracking-wide hidden sm:block">
+            クリックで拡大
+          </p>
         </div>
 
-        {/* 画像グリッド */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
-          {galleryData.images.map((image: any, index) => (
-            <div
-              key={index}
-              onClick={() => openModal(index)}
-              className="relative aspect-square rounded-2xl overflow-hidden shadow-sm group cursor-pointer"
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={image.url || image.image}
-                alt={image.caption}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              {/* ホバー時のオーバーレイ */}
-              <div className="absolute inset-0 bg-stone-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
-                <div className="text-center text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-350">
-                  <p className="text-sm font-medium tracking-wide">
+        {/* 画像グリッド (不均等レイアウト) */}
+        <div className="grid grid-cols-2 md:grid-cols-3 auto-rows-[240px] gap-3">
+          {images.map((image: any, index) => {
+            const isWide = index === 0;
+            return (
+              <div
+                key={index}
+                onClick={() => openModal(index)}
+                className={`relative overflow-hidden rounded-xl group cursor-pointer ${isWide ? "col-span-2 row-span-2" : ""}`}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={image.url || image.image}
+                  alt={image.caption}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+                />
+                {/* ホバーオーバーレイ */}
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-950/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-end p-5">
+                  <p className="text-white text-sm font-light tracking-wide translate-y-2 group-hover:translate-y-0 transition-transform duration-400">
                     {image.caption}
                   </p>
-                  <span className="inline-block mt-2 px-3 py-1 text-xs border border-white/60 rounded-full font-light bg-white/10 backdrop-blur-xs">
-                    拡大表示
-                  </span>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
-      {/* 拡大表示モーダル */}
+      {/* ライトボックスモーダル */}
       {selectedImgIndex !== null && (
         <div
           onClick={closeModal}
-          className="fixed inset-0 z-55 bg-stone-950/90 backdrop-blur-md flex items-center justify-center p-4 animate-fade-in"
+          className="fixed inset-0 z-[55] bg-black/92 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in"
         >
-          {/* 閉じるボタン */}
+          {/* 閉じる */}
           <button
             onClick={closeModal}
-            className="absolute top-6 right-6 text-white/80 hover:text-white cursor-pointer"
+            className="absolute top-5 right-5 text-white/50 hover:text-white transition-colors cursor-pointer z-10"
             aria-label="閉じる"
           >
-            <svg
-              className="w-8 h-8"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M6 18L18 6M6 6l12 12"
-              />
+            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
 
-          {/* 前へボタン */}
+          {/* 前へ */}
           <button
             onClick={showPrev}
-            className="absolute left-4 sm:left-8 text-white/80 hover:text-white bg-white/10 hover:bg-white/20 p-3 rounded-full backdrop-blur-xs cursor-pointer select-none"
+            className="absolute left-4 sm:left-6 text-white/50 hover:text-white transition-colors cursor-pointer z-10 p-2"
             aria-label="前へ"
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M15 19l-7-7 7-7"
-              />
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 19l-7-7 7-7" />
             </svg>
           </button>
 
-          {/* コンテンツエリア */}
+          {/* 画像 */}
           <div
             onClick={(e) => e.stopPropagation()}
-            className="max-w-4xl max-h-[80vh] w-full flex flex-col items-center justify-center space-y-4"
+            className="max-w-4xl max-h-[85vh] w-full flex flex-col items-center gap-4"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={galleryData.images[selectedImgIndex].url || (galleryData.images[selectedImgIndex] as any).image}
-              alt={galleryData.images[selectedImgIndex].caption}
-              className="max-w-full max-h-[70vh] object-contain rounded-lg shadow-2xl animate-fade-in"
+              src={images[selectedImgIndex].url || (images[selectedImgIndex] as any).image}
+              alt={images[selectedImgIndex].caption}
+              className="max-w-full max-h-[75vh] object-contain rounded-lg"
             />
-            <p className="text-white text-base tracking-wider font-light text-center px-4">
-              {galleryData.images[selectedImgIndex].caption}
+            <p className="text-stone-400 text-sm tracking-wider font-light">
+              {images[selectedImgIndex].caption}
+            </p>
+            <p className="text-stone-600 text-xs">
+              {selectedImgIndex + 1} / {images.length}
             </p>
           </div>
 
-          {/* 次へボタン */}
+          {/* 次へ */}
           <button
             onClick={showNext}
-            className="absolute right-4 sm:right-8 text-white/80 hover:text-white bg-white/10 hover:bg-white/20 p-3 rounded-full backdrop-blur-xs cursor-pointer select-none"
+            className="absolute right-4 sm:right-6 text-white/50 hover:text-white transition-colors cursor-pointer z-10 p-2"
             aria-label="次へ"
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M9 5l7 7-7 7"
-              />
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 5l7 7-7 7" />
             </svg>
           </button>
         </div>

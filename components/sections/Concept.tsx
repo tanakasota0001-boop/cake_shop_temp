@@ -3,45 +3,72 @@ import conceptData from "@/content/concept.json";
 
 export const Concept = () => {
   return (
-    <section id="concept" className="py-24 sm:py-32 bg-stone-50 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <section id="concept" className="py-28 sm:py-36 bg-[#fdfbf7] overflow-hidden">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-24 items-center">
+
           {/* 左側: テキスト */}
-          <div className="space-y-6 max-w-xl">
-            <div className="space-y-2">
-              <span className="text-primary font-bold tracking-widest text-sm uppercase block">
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <span className="section-eyebrow">
                 {conceptData.title}
               </span>
-              <h2 className="text-3xl sm:text-4xl font-bold text-stone-800 tracking-wider">
+              <h2 className="text-3xl sm:text-4xl font-bold text-stone-900 tracking-wide leading-tight mt-3">
                 {conceptData.subtitle}
               </h2>
             </div>
-            <div className="space-y-6 text-stone-600 leading-relaxed text-base">
+
+            <div className="w-8 h-px bg-primary/50" />
+
+            <div className="space-y-5 text-stone-600 leading-[1.95] text-[0.9375rem]">
               {conceptData.paragraphs.map((paragraph, index) => (
                 <p key={index}>{paragraph}</p>
               ))}
             </div>
+
+            {/* 特徴リスト */}
+            <div className="grid grid-cols-3 gap-6 pt-4 border-t border-stone-100">
+              {[
+                { num: "100%", label: "国産・産地直送素材" },
+                { num: "Daily", label: "毎日手作り" },
+                { num: "No", label: "人工添加物不使用" },
+              ].map((item, i) => (
+                <div key={i} className="space-y-1">
+                  <p className="text-primary font-bold text-sm tracking-wider">{item.num}</p>
+                  <p className="text-stone-500 text-xs leading-snug">{item.label}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* 右側: 重なり合う美しい画像レイアウト */}
-          <div className="relative h-[450px] sm:h-[550px] w-full max-w-lg mx-auto lg:max-w-none">
-            {/* メインの大きい画像 */}
-            <div className="absolute top-0 right-0 w-4/5 h-4/5 rounded-2xl overflow-hidden shadow-lg">
+          {/* 右側: 画像コンポジション */}
+          <div className="relative h-[460px] sm:h-[560px] w-full">
+            {/* 背景の装飾ブロック */}
+            <div className="absolute top-0 right-0 w-[85%] h-[85%] bg-stone-100 rounded-xl z-0" />
+
+            {/* メイン画像 */}
+            <div className="absolute top-4 right-4 w-[82%] h-[80%] rounded-xl overflow-hidden shadow-xl z-10 img-zoom">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={conceptData.image}
-                alt="Our cakes and details"
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                alt="Patisserie Fleur のこだわりのケーキ"
+                className="w-full h-full object-cover"
               />
             </div>
-            {/* サブの小さい画像 (左下に浮かぶ) */}
-            <div className="absolute bottom-0 left-0 w-1/2 h-1/2 rounded-2xl overflow-hidden shadow-xl border-4 border-white">
+
+            {/* サブ画像 */}
+            <div className="absolute bottom-0 left-0 w-[46%] h-[46%] rounded-xl overflow-hidden shadow-2xl z-20 border-[3px] border-[#fdfbf7] img-zoom">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={conceptData.subImage}
-                alt="Baking ingredients"
+                alt="ケーキ作りの素材"
                 className="w-full h-full object-cover"
               />
+            </div>
+
+            {/* フロートテキストラベル */}
+            <div className="absolute bottom-[44%] left-[40%] z-30 bg-white/95 backdrop-blur-sm px-4 py-2.5 rounded-lg shadow-lg border border-stone-100">
+              <p className="text-[0.65rem] tracking-[0.15em] uppercase text-primary font-medium">Handcrafted Daily</p>
             </div>
           </div>
         </div>

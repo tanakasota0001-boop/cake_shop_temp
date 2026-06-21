@@ -3,62 +3,62 @@ import ownerData from "@/content/owner.json";
 
 export const Owner = () => {
   return (
-    <section id="owner" className="py-24 sm:py-32 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-          {/* 左側: シェフの写真 (12カラム中5カラム) */}
-          <div className="lg:col-span-5 flex justify-center">
-            <div className="relative group max-w-sm lg:max-w-none w-full aspect-[3/4] rounded-2xl overflow-hidden shadow-md">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={ownerData.image}
-                alt={ownerData.chefName}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-stone-950/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                <p className="text-white text-sm font-light">
-                  お菓子づくりにかける情熱を、一品一品に込めて。
-                </p>
+    <section id="owner" className="py-28 sm:py-36 bg-[#fdfbf7] overflow-hidden">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 xl:gap-20 items-center">
+
+          {/* 左側: シェフ写真 */}
+          <div className="lg:col-span-5">
+            <div className="relative max-w-sm lg:max-w-none mx-auto">
+              {/* 装飾ブロック */}
+              <div className="absolute -bottom-4 -left-4 w-full h-full rounded-2xl bg-stone-100 z-0" />
+              <div className="relative rounded-2xl overflow-hidden aspect-[3/4] img-zoom shadow-xl z-10">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={ownerData.image}
+                  alt={ownerData.chefName}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-950/50 to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6">
+                  <p className="text-white font-bold text-lg tracking-wide">{ownerData.chefName}</p>
+                  <p className="text-white/60 text-xs tracking-[0.2em] uppercase mt-0.5">{ownerData.chefNameEn}</p>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* 右側: メッセージと経歴 (12カラム中7カラム) */}
+          {/* 右側: テキスト */}
           <div className="lg:col-span-7 space-y-8">
-            <div className="space-y-2">
-              <span className="text-primary font-bold tracking-widest text-sm uppercase block">
-                {ownerData.title}
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-bold text-stone-800 tracking-wider">
+            <div className="space-y-3">
+              <span className="section-eyebrow">{ownerData.title}</span>
+              <h2 className="text-3xl sm:text-4xl font-bold text-stone-900 tracking-wide mt-3">
                 {ownerData.subtitle}
               </h2>
             </div>
 
-            <div className="space-y-4">
-              <div className="border-b border-stone-200 pb-4">
-                <span className="text-2xl font-bold text-stone-800">
-                  {ownerData.chefName}
-                </span>
-                <span className="text-stone-400 text-sm ml-3 font-light tracking-wide uppercase">
-                  {ownerData.chefNameEn}
-                </span>
-              </div>
-              <p className="text-stone-600 leading-relaxed whitespace-pre-line text-base">
-                {ownerData.message}
-              </p>
-            </div>
+            <div className="w-8 h-px bg-primary/50" />
 
-            {/* 略歴リスト */}
-            <div className="space-y-4 pt-4 border-t border-stone-100">
-              <h3 className="text-stone-800 font-semibold tracking-wider">Career History</h3>
-              <ul className="space-y-3">
+            <p className="text-stone-600 leading-[1.95] whitespace-pre-line text-[0.9375rem]">
+              {ownerData.message}
+            </p>
+
+            {/* 略歴タイムライン */}
+            <div className="space-y-0 pt-2">
+              <h3 className="text-[0.65rem] font-medium tracking-[0.2em] uppercase text-stone-400 mb-5">Career History</h3>
+              <div className="space-y-0">
                 {ownerData.careers.map((career, index) => (
-                  <li key={index} className="flex items-start text-sm text-stone-600">
-                    <span className="text-primary mr-3 mt-1.5 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
-                    <span>{career}</span>
-                  </li>
+                  <div key={index} className="flex gap-4 pb-5 relative">
+                    {/* タイムラインライン */}
+                    {index < ownerData.careers.length - 1 && (
+                      <div className="absolute left-[0.4rem] top-4 bottom-0 w-px bg-stone-200" />
+                    )}
+                    {/* ドット */}
+                    <div className="w-3.5 h-3.5 rounded-full border-2 border-primary bg-[#fdfbf7] flex-shrink-0 mt-0.5 z-10" />
+                    <p className="text-sm text-stone-600 leading-relaxed">{career}</p>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
         </div>

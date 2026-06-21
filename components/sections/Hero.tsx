@@ -8,59 +8,80 @@ export const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-stone-900"
+      className="relative h-screen min-h-[680px] flex items-end justify-center overflow-hidden bg-stone-950"
     >
-      {/* 背景画像とオーバーレイ */}
+      {/* 背景画像 */}
       <div className="absolute inset-0 z-0">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={heroData.backgroundImage}
-          alt="Patisserie Fleur background"
-          className="w-full h-full object-cover object-center opacity-40 scale-105 animate-fade-in"
+          alt="Patisserie Fleur"
+          className="w-full h-full object-cover object-center"
+          style={{ opacity: 0.55 }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/50 to-stone-950/80 z-10" />
+        {/* 下からの濃いグラデーション */}
+        <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/20 to-stone-900/30" />
       </div>
 
-      {/* コンテンツ */}
-      <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white space-y-6">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-widest leading-tight animate-fade-in-up drop-shadow-lg">
-          {heroData.title}
-        </h1>
-        <p className="text-lg sm:text-xl font-light tracking-wider text-stone-200 animate-fade-in-up delay-200 drop-shadow-md max-w-3xl mx-auto">
-          {heroData.subtitle}
-        </p>
-        <div className="pt-6 animate-fade-in-up delay-300">
-          <Button
-            variant="primary"
-            size="lg"
-            onClick={() => {
-              const menuSection = document.getElementById(heroData.ctaAnchor.replace("#", ""));
-              if (menuSection) {
-                menuSection.scrollIntoView({ behavior: "smooth" });
-              }
-            }}
-            className="hover:scale-105 duration-300"
+      {/* コンテンツ — 画面下寄り配置 */}
+      <div className="relative z-20 w-full max-w-[1320px] mx-auto px-6 lg:px-10 pb-20 sm:pb-28">
+        <div className="max-w-3xl">
+          {/* Eyebrow */}
+          <p className="text-stone-300/80 text-xs tracking-[0.3em] uppercase mb-6 font-light animate-fade-in">
+            Artisan Pâtisserie · Since 2020
+          </p>
+
+          {/* Main title */}
+          <h1 className="text-4xl sm:text-5xl md:text-[3.5rem] font-bold text-white leading-[1.15] tracking-wide mb-6 animate-fade-in-up"
+            style={{ animationDelay: "0.1s", animationFillMode: "both" }}
           >
-            {heroData.ctaText}
-          </Button>
+            {heroData.title}
+          </h1>
+
+          {/* Subtitle */}
+          <p className="text-stone-300 text-base sm:text-lg font-light tracking-wide leading-relaxed mb-10 max-w-xl animate-fade-in-up"
+            style={{ animationDelay: "0.25s", animationFillMode: "both" }}
+          >
+            {heroData.subtitle}
+          </p>
+
+          {/* CTA */}
+          <div className="flex items-center gap-6 animate-fade-in-up"
+            style={{ animationDelay: "0.4s", animationFillMode: "both" }}
+          >
+            <Button
+              variant="primary"
+              size="lg"
+              onClick={() => {
+                const menuSection = document.getElementById(heroData.ctaAnchor.replace("#", ""));
+                if (menuSection) {
+                  menuSection.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
+              className="hover:scale-[1.03] transition-transform duration-300 text-sm tracking-[0.12em]"
+            >
+              {heroData.ctaText}
+            </Button>
+
+            <button
+              onClick={() => {
+                const conceptSection = document.getElementById("concept");
+                if (conceptSection) conceptSection.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="text-white/70 hover:text-white text-sm tracking-[0.15em] uppercase transition-colors duration-300 underline underline-offset-4 decoration-white/30 hover:decoration-white/70"
+            >
+              私たちについて
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* 下部の矢印（スクロール促し） */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 text-white animate-bounce hidden sm:block">
-        <svg
-          className="h-6 w-6 opacity-75"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M19 14l-7 7m0 0l-7-7m7 7V3"
-          />
-        </svg>
+      {/* スクロールインジケーター */}
+      <div className="absolute bottom-7 right-10 z-20 hidden sm:flex flex-col items-center gap-2">
+        <span className="text-white/40 text-[0.6rem] tracking-[0.25em] uppercase writing-vertical-lr rotate-90" style={{ writingMode: "vertical-rl", letterSpacing: "0.25em" }}>
+          Scroll
+        </span>
+        <div className="w-px h-12 bg-gradient-to-b from-white/0 via-white/40 to-white/0 animate-pulse" />
       </div>
     </section>
   );

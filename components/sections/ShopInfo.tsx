@@ -3,62 +3,56 @@ import shopInfoData from "@/content/shop-info.json";
 
 export const ShopInfo = () => {
   return (
-    <section id="shop-info" className="py-24 sm:py-32 bg-stone-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        {/* セクションタイトル */}
-        <div className="text-center space-y-2">
-          <span className="text-primary font-bold tracking-widest text-sm uppercase block">
-            {shopInfoData.title}
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-stone-800 tracking-wider">
+    <section id="shop-info" className="py-28 sm:py-36 bg-[#fdfbf7]">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
+
+        {/* セクションヘッダー */}
+        <div className="text-center mb-14">
+          <span className="section-eyebrow mx-auto">{shopInfoData.title}</span>
+          <h2 className="text-3xl sm:text-4xl font-bold text-stone-900 tracking-wide mt-4">
             {shopInfoData.subtitle}
           </h2>
         </div>
 
-        {/* コンテンツレイアウト */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
-          {/* 左側: 店舗詳細テキスト (12カラム中5カラム) */}
-          <div className="lg:col-span-5 bg-white p-8 sm:p-10 rounded-2xl border border-stone-100 shadow-sm flex flex-col justify-between space-y-8">
-            <div className="space-y-6">
-              <h3 className="text-2xl font-bold text-stone-850 border-b border-stone-100 pb-4 tracking-wide">
-                {shopInfoData.shopName}
-              </h3>
-              
-              <div className="space-y-4 text-stone-600 text-sm sm:text-base leading-relaxed">
-                <div>
-                  <h4 className="font-bold text-stone-800 mb-1">住所</h4>
-                  <p>{shopInfoData.address}</p>
-                </div>
-                <div>
-                  <h4 className="font-bold text-stone-800 mb-1">電話番号</h4>
-                  <p className="text-primary font-semibold hover:opacity-85">
-                    <a href={`tel:${shopInfoData.tel.replace(/-/g, "")}`}>
-                      {shopInfoData.tel}
-                    </a>
+        {/* レイアウト */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+
+          {/* 店舗情報 */}
+          <div className="lg:col-span-4 space-y-0">
+            <h3 className="text-xl font-bold text-stone-900 tracking-wide pb-5 border-b border-stone-200 mb-0">
+              {shopInfoData.shopName}
+            </h3>
+
+            {[
+              { label: "住所", value: shopInfoData.address },
+              { label: "電話番号", value: shopInfoData.tel, isTel: true },
+              { label: "メール", value: shopInfoData.email },
+              { label: "営業時間", value: shopInfoData.hours },
+              { label: "定休日", value: shopInfoData.closed },
+              { label: "アクセス", value: shopInfoData.access, small: true },
+            ].map((item, i) => (
+              <div key={i} className="py-4 border-b border-stone-100 flex gap-4">
+                <span className="text-[0.7rem] font-medium tracking-[0.12em] uppercase text-stone-400 flex-shrink-0 w-20 mt-0.5">
+                  {item.label}
+                </span>
+                {item.isTel ? (
+                  <a
+                    href={`tel:${shopInfoData.tel.replace(/-/g, "")}`}
+                    className="text-primary font-semibold hover:opacity-80 transition-opacity text-sm"
+                  >
+                    {item.value}
+                  </a>
+                ) : (
+                  <p className={`text-stone-700 ${item.small ? "text-xs" : "text-sm"} leading-relaxed`}>
+                    {item.value}
                   </p>
-                </div>
-                <div>
-                  <h4 className="font-bold text-stone-800 mb-1">メールアドレス</h4>
-                  <p>{shopInfoData.email}</p>
-                </div>
-                <div>
-                  <h4 className="font-bold text-stone-800 mb-1">営業時間</h4>
-                  <p>{shopInfoData.hours}</p>
-                </div>
-                <div>
-                  <h4 className="font-bold text-stone-800 mb-1">定休日</h4>
-                  <p>{shopInfoData.closed}</p>
-                </div>
-                <div>
-                  <h4 className="font-bold text-stone-800 mb-1">アクセス</h4>
-                  <p className="text-xs sm:text-sm">{shopInfoData.access}</p>
-                </div>
+                )}
               </div>
-            </div>
+            ))}
           </div>
 
-          {/* 右側: Google Map埋め込み (12カラム中7カラム) */}
-          <div className="lg:col-span-7 h-[350px] lg:h-auto min-h-[350px] w-full rounded-2xl overflow-hidden shadow-sm border border-stone-200">
+          {/* Google Map */}
+          <div className="lg:col-span-8 h-[360px] lg:h-auto min-h-[360px] rounded-2xl overflow-hidden border border-stone-200">
             <iframe
               src={shopInfoData.googleMapEmbedUrl}
               width="100%"
@@ -68,7 +62,7 @@ export const ShopInfo = () => {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               title={`${shopInfoData.shopName}の地図`}
-              className="w-full h-full grayscale hover:grayscale-0 transition-all duration-500"
+              className="w-full h-full grayscale hover:grayscale-0 transition-all duration-700"
             />
           </div>
         </div>

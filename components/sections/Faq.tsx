@@ -11,80 +11,49 @@ export const Faq = () => {
   };
 
   return (
-    <section id="faq" className="py-24 sm:py-32 bg-white">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        {/* セクションタイトル */}
-        <div className="text-center space-y-2">
-          <span className="text-primary font-bold tracking-widest text-sm uppercase block">
-            {faqData.title}
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-stone-800 tracking-wider">
+    <section id="faq" className="py-28 sm:py-36 bg-stone-50">
+      <div className="max-w-2xl mx-auto px-6 lg:px-10">
+
+        {/* セクションヘッダー */}
+        <div className="text-center mb-14">
+          <span className="section-eyebrow mx-auto">{faqData.title}</span>
+          <h2 className="text-3xl sm:text-4xl font-bold text-stone-900 tracking-wide mt-4">
             {faqData.subtitle}
           </h2>
         </div>
 
-        {/* アコーディオンリスト */}
-        <div className="space-y-4">
+        {/* アコーディオン */}
+        <div className="space-y-2">
           {faqData.faqs.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
               <div
                 key={index}
-                className="border border-stone-200 rounded-2xl overflow-hidden bg-stone-50/50 hover:bg-stone-50/80 transition-colors duration-300"
+                className={`border rounded-xl overflow-hidden transition-colors duration-200 ${
+                  isOpen ? "border-primary/30 bg-white" : "border-stone-200 bg-white hover:border-stone-300"
+                }`}
               >
-                {/* 質問部分 (ヘッダー) */}
                 <button
                   onClick={() => toggleAccordion(index)}
-                  className="w-full flex items-center justify-between p-5 text-left font-semibold text-stone-800 cursor-pointer select-none"
+                  className="w-full flex items-center justify-between px-6 py-5 text-left cursor-pointer select-none"
                   aria-expanded={isOpen}
                 >
-                  <span className="pr-4 tracking-wide text-sm sm:text-base">
-                    Q. {faq.question}
+                  <span className="text-stone-800 font-medium text-sm sm:text-base tracking-wide pr-4 leading-relaxed">
+                    {faq.question}
                   </span>
-                  <span className="flex-shrink-0 ml-2">
-                    {isOpen ? (
-                      // マイナスボタン
-                      <svg
-                        className="h-5 w-5 text-primary"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M20 12H4"
-                        />
-                      </svg>
-                    ) : (
-                      // プラスボタン
-                      <svg
-                        className="h-5 w-5 text-stone-400"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M12 4v16m8-8H4"
-                        />
-                      </svg>
-                    )}
+                  <span className={`flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300 ${isOpen ? "bg-primary text-white rotate-45" : "bg-stone-100 text-stone-400"}`}>
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 4v16m8-8H4" />
+                    </svg>
                   </span>
                 </button>
 
-                {/* 回答部分 (コンテンツ) */}
                 <div
                   className={`transition-all duration-300 ease-in-out overflow-hidden ${
-                    isOpen ? "max-h-[300px] border-t border-stone-100" : "max-h-0"
+                    isOpen ? "max-h-[400px]" : "max-h-0"
                   }`}
                 >
-                  <p className="p-5 text-sm sm:text-base text-stone-600 leading-relaxed bg-white whitespace-pre-line">
+                  <p className="px-6 pb-6 text-sm sm:text-base text-stone-500 leading-relaxed border-t border-stone-100 pt-4 whitespace-pre-line">
                     {faq.answer}
                   </p>
                 </div>

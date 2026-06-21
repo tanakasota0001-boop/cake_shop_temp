@@ -2,11 +2,9 @@
 
 import React, { useState } from "react";
 import menuData from "@/content/menu.json";
-import Card from "@/components/ui/Card";
-import Badge from "@/components/ui/Badge";
+
 
 export const Menu = () => {
-  // 初期選択状態を最初のカテゴリにする
   const [activeCategory, setActiveCategory] = useState(
     menuData.categories[0]?.name || ""
   );
@@ -16,31 +14,30 @@ export const Menu = () => {
   );
 
   return (
-    <section id="menu" className="py-24 sm:py-32 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        {/* セクションタイトル */}
-        <div className="text-center space-y-2">
-          <span className="text-primary font-bold tracking-widest text-sm uppercase block">
-            {menuData.title}
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-stone-800 tracking-wider">
-            {menuData.subtitle}
-          </h2>
-        </div>
+    <section id="menu" className="py-28 sm:py-36 bg-stone-50">
+      <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
 
-        {/* カテゴリタブ切替 */}
-        <div className="flex justify-center border-b border-stone-200">
-          <div className="flex space-x-8 -mb-px">
+        {/* セクションヘッダー */}
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14">
+          <div className="space-y-3">
+            <span className="section-eyebrow">{menuData.title}</span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-stone-900 tracking-wide mt-3">
+              {menuData.subtitle}
+            </h2>
+          </div>
+
+          {/* カテゴリタブ */}
+          <div className="flex gap-1 bg-white rounded-full p-1 shadow-sm border border-stone-100 self-start sm:self-auto">
             {menuData.categories.map((category) => {
               const isActive = category.name === activeCategory;
               return (
                 <button
                   key={category.name}
                   onClick={() => setActiveCategory(category.name)}
-                  className={`py-4 px-2 border-b-2 font-medium text-sm sm:text-base tracking-wider transition-all duration-300 cursor-pointer ${
+                  className={`px-5 py-2 rounded-full text-sm font-medium tracking-wide transition-all duration-300 cursor-pointer ${
                     isActive
-                      ? "border-primary text-primary font-bold scale-105"
-                      : "border-transparent text-stone-400 hover:text-stone-600 hover:border-stone-300"
+                      ? "bg-primary text-white shadow-sm"
+                      : "text-stone-500 hover:text-stone-800"
                   }`}
                 >
                   {category.nameJa}
@@ -50,51 +47,48 @@ export const Menu = () => {
           </div>
         </div>
 
-        {/* メニューアイテムグリッド */}
+        {/* メニューグリッド */}
         {selectedCategory && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {selectedCategory.items.map((item, index) => (
-              <Card key={index} className="flex flex-col bg-white">
-                {/* メニュー画像 */}
+              <article key={index} className="group bg-white rounded-2xl overflow-hidden border border-stone-100 shadow-sm hover:shadow-lg transition-all duration-500 hover:-translate-y-1">
+                {/* 画像エリア */}
                 <div className="relative aspect-[4/3] overflow-hidden bg-stone-100">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.07]"
                   />
-                  {/* タグ表示 */}
+                  {/* タグ */}
                   {item.tags && item.tags.length > 0 && (
-                    <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+                    <div className="absolute top-3 left-3 flex flex-wrap gap-1.5">
                       {item.tags.map((tag) => (
-                        <Badge key={tag} variant="accent">
+                        <span key={tag} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[0.65rem] font-medium tracking-wider bg-amber-500 text-white">
                           {tag}
-                        </Badge>
+                        </span>
                       ))}
                     </div>
                   )}
-                </div>
-
-                {/* 詳細テキスト */}
-                <div className="p-6 flex-grow flex flex-col justify-between space-y-4">
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-baseline">
-                      <h3 className="text-lg font-bold text-stone-850 tracking-wide">
-                        {item.name}
-                      </h3>
-                      <span className="text-primary font-bold text-lg">
-                        &yen;{item.price.toLocaleString()}
-                        <span className="text-stone-400 text-xs font-normal ml-0.5">
-                          (税込)
-                        </span>
-                      </span>
-                    </div>
-                    <p className="text-stone-500 text-sm leading-relaxed">
-                      {item.description}
-                    </p>
+                  {/* 価格ラベル */}
+                  <div className="absolute bottom-0 right-0 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-tl-xl">
+                    <span className="text-stone-900 font-bold text-base">
+                      ¥{item.price.toLocaleString()}
+                    </span>
+                    <span className="text-stone-400 text-[0.65rem] ml-0.5">税込</span>
                   </div>
                 </div>
-              </Card>
+
+                {/* テキスト */}
+                <div className="p-6">
+                  <h3 className="text-base font-bold text-stone-900 tracking-wide mb-2">
+                    {item.name}
+                  </h3>
+                  <p className="text-stone-500 text-sm leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+              </article>
             ))}
           </div>
         )}

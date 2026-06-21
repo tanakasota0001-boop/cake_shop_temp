@@ -10,19 +10,24 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className = "", variant = "primary", size = "md", children, ...props }, ref) => {
-    const baseStyles = "inline-flex items-center justify-center rounded-full font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 disabled:pointer-events-none cursor-pointer";
-    
+    const baseStyles =
+      "inline-flex items-center justify-center rounded-full font-medium tracking-[0.1em] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary disabled:opacity-50 disabled:pointer-events-none cursor-pointer";
+
     const variants = {
-      primary: "bg-primary text-white hover:opacity-90 shadow-md hover:shadow-lg active:scale-95",
-      accent: "bg-accent text-white hover:opacity-90 shadow-md hover:shadow-lg active:scale-95",
-      outline: "border-2 border-primary text-primary bg-transparent hover:bg-primary hover:text-white active:scale-95",
-      ghost: "text-primary hover:bg-primary/10 active:scale-95",
+      primary:
+        "bg-primary text-white hover:bg-primary/90 shadow-[0_4px_20px_rgba(178,130,92,0.35)] hover:shadow-[0_6px_28px_rgba(178,130,92,0.45)] active:scale-[0.97]",
+      accent:
+        "bg-accent text-white hover:bg-accent/90 shadow-[0_4px_20px_rgba(217,119,6,0.3)] hover:shadow-[0_6px_28px_rgba(217,119,6,0.4)] active:scale-[0.97]",
+      outline:
+        "border border-primary text-primary bg-transparent hover:bg-primary hover:text-white active:scale-[0.97]",
+      ghost:
+        "text-primary hover:bg-primary/8 active:scale-[0.97]",
     };
 
     const sizes = {
-      sm: "px-4 py-1.5 text-sm",
-      md: "px-6 py-2.5 text-base",
-      lg: "px-8 py-3.5 text-lg",
+      sm: "px-5 py-2 text-xs",
+      md: "px-7 py-2.5 text-sm",
+      lg: "px-9 py-3.5 text-sm",
     };
 
     return (
