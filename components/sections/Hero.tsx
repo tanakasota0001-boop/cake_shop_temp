@@ -75,14 +75,6 @@ export const Hero = () => {
           </div>
         </div>
       </div>
-
-      {/* スクロールインジケーター */}
-      <div className="absolute bottom-7 right-10 z-20 hidden sm:flex flex-col items-center gap-2">
-        <span className="text-white/40 text-[0.6rem] tracking-[0.25em] uppercase writing-vertical-lr rotate-90" style={{ writingMode: "vertical-rl", letterSpacing: "0.25em" }}>
-          Scroll
-        </span>
-        <div className="w-px h-12 bg-gradient-to-b from-white/0 via-white/40 to-white/0 animate-pulse" />
-      </div>
     </section>
   );
 };
