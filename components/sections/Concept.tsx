@@ -66,10 +66,6 @@ export const Concept = () => {
               />
             </div>
 
-            {/* フロートテキストラベル */}
-            <div className="absolute bottom-[44%] left-[40%] z-30 bg-white/95 backdrop-blur-sm px-4 py-2.5 rounded-lg shadow-lg border border-stone-100">
-              <p className="text-[0.65rem] tracking-[0.15em] uppercase text-primary font-medium">Handcrafted Daily</p>
-            </div>
           </div>
         </div>
       </div>
