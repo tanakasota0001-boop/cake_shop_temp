@@ -33,7 +33,7 @@ export const Header = () => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? "bg-white/95 backdrop-blur-md shadow-md py-3 text-stone-800"
-          : "bg-transparent py-5 text-white"
+          : "bg-gradient-to-b from-stone-950/60 via-stone-950/20 to-transparent py-5 text-white"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

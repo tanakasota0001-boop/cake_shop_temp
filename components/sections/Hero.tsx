@@ -16,17 +16,17 @@ export const Hero = () => {
         <img
           src={heroData.backgroundImage}
           alt="Patisserie Fleur background"
-          className="w-full h-full object-cover object-center opacity-60 scale-105 animate-fade-in"
+          className="w-full h-full object-cover object-center opacity-40 scale-105 animate-fade-in"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-900/40 to-stone-950/70 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/50 to-stone-950/80 z-10" />
       </div>
 
       {/* コンテンツ */}
       <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white space-y-6">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-widest leading-tight animate-fade-in-up drop-shadow-md">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-widest leading-tight animate-fade-in-up drop-shadow-lg">
           {heroData.title}
         </h1>
-        <p className="text-lg sm:text-xl font-light tracking-wider text-stone-200 animate-fade-in-up delay-200 drop-shadow-sm max-w-3xl mx-auto">
+        <p className="text-lg sm:text-xl font-light tracking-wider text-stone-200 animate-fade-in-up delay-200 drop-shadow-md max-w-3xl mx-auto">
           {heroData.subtitle}
         </p>
         <div className="pt-6 animate-fade-in-up delay-300">
