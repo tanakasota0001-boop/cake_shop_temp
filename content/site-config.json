@@ -2,6 +2,7 @@
   "shopName": "Patisserie Fleur",
   "shopNameJa": "パティスリー フルール",
   "logoPath": "/images/logo.png",
+  "fontFamily": "sans",
   "theme": {
     "primary": "#b2825c",
     "accent": "#d97706",
