@@ -1,0 +1,31 @@
+{
+  "shopName": "Patisserie Fleur",
+  "shopNameJa": "パティスリー フルール",
+  "logoPath": "/images/logo.png",
+  "theme": {
+    "primary": "#b2825c",
+    "accent": "#d97706",
+    "background": "#fdfbf7",
+    "text": "#292524"
+  },
+  "sns": {
+    "instagram": "https://instagram.com/patisserie_fleur_dummy",
+    "twitter": "https://twitter.com/patisserie_fleur_dummy",
+    "facebook": "https://facebook.com/patisserie_fleur_dummy"
+  },
+  "navigation": [
+    { "label": "コンセプト", "path": "/#concept" },
+    { "label": "メニュー", "path": "/#menu" },
+    { "label": "シェフ紹介", "path": "/#owner" },
+    { "label": "ギャラリー", "path": "/#gallery" },
+    { "label": "お客様の声", "path": "/#testimonials" },
+    { "label": "注文方法", "path": "/#order" },
+    { "label": "よくある質問", "path": "/#faq" },
+    { "label": "店舗情報", "path": "/#shop-info" },
+    { "label": "最新情報", "path": "/blog" }
+  ],
+  "seo": {
+    "title": "Patisserie Fleur | 心を込めた手作りケーキと洋菓子",
+    "description": "厳選された素材を使い、毎日職人が手作りするケーキと洋菓子の専門店。季節のフルーツをふんだんに使ったタルトや、定番のショートケーキを洗練された空間でお届けします。"
+  }
+}

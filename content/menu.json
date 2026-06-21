@@ -1,0 +1,73 @@
+{
+  "title": "Menu",
+  "subtitle": "定番・季節の商品",
+  "categories": [
+    {
+      "name": "Cakes",
+      "nameJa": "生ケーキ",
+      "items": [
+        {
+          "name": "フルール・ショートケーキ",
+          "description": "しっとり焼き上げたジェノワーズに、厳選した北海道生クリームと甘酸っぱいイチゴをたっぷりサンドしました。",
+          "price": 650,
+          "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=600&auto=format&fit=crop",
+          "tags": ["一番人気", "定番"]
+        },
+        {
+          "name": "ショコラ・クラシック",
+          "description": "ベルギー産ダークチョコレートを贅沢に使用。しっとりと濃厚で、カカオ本来の芳醇な香りを楽しめるガトーショコラです。",
+          "price": 600,
+          "image": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=600&auto=format&fit=crop",
+          "tags": ["定番"]
+        },
+        {
+          "name": "モンブラン・ロワイヤル",
+          "description": "フランス産サバトン社のマロンペーストを使用し、サクサクのメレンゲと無糖生クリームの上にたっぷりと絞り出しました。",
+          "price": 680,
+          "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=600&auto=format&fit=crop",
+          "tags": ["おすすめ"]
+        }
+      ]
+    },
+    {
+      "name": "Tarts",
+      "nameJa": "季節のタルト",
+      "items": [
+        {
+          "name": "旬のフルーツタルト",
+          "description": "香ばしいアーモンドタルト生地に、カスタードクリームと毎朝市場で仕入れる新鮮な旬のフルーツを山盛りに飾りました。",
+          "price": 700,
+          "image": "https://images.unsplash.com/photo-1519869325930-281384150729?q=80&w=600&auto=format&fit=crop",
+          "tags": ["季節限定"]
+        },
+        {
+          "name": "タルト・オ・シトロン",
+          "description": "瀬戸内産レモンを絞った甘酸っぱくクリーミーなレモンカードに、ふんわり焦がしメレンゲをあしらったフランスの定番タルト。",
+          "price": 620,
+          "image": "https://images.unsplash.com/photo-1587314168485-3236d6710814?q=80&w=600&auto=format&fit=crop",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "name": "Baked",
+      "nameJa": "焼き菓子",
+      "items": [
+        {
+          "name": "焦がしバターのフィナンシェ",
+          "description": "極限まで焦がした国産バターと、挽きたてのアーモンドパウダーを使用。外はカリッと、中はしっとり食感です。",
+          "price": 280,
+          "image": "https://images.unsplash.com/photo-1550617931-e17a7b70dce2?q=80&w=600&auto=format&fit=crop",
+          "tags": ["ギフト推奨"]
+        },
+        {
+          "name": "プレミアム・マドレーヌ",
+          "description": "ハチミツの優しい甘みと、レモンの爽やかな香りがアクセント。何個でも食べられる素朴ながらリッチな焼き菓子です。",
+          "price": 260,
+          "image": "https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?q=80&w=600&auto=format&fit=crop",
+          "tags": []
+        }
+      ]
+    }
+  ]
+}

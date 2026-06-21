@@ -1,0 +1,30 @@
+{
+  "title": "Gallery",
+  "subtitle": "フルールの日常と美味しい瞬間",
+  "images": [
+    {
+      "url": "https://images.unsplash.com/photo-1517433456452-f9633a875f6f?q=80&w=800&auto=format&fit=crop",
+      "caption": "毎朝手作りするパティシエの職人技"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=800&auto=format&fit=crop",
+      "caption": "一番人気のフルール・ショートケーキ"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=800&auto=format&fit=crop",
+      "caption": "焼きたてのマカロンや焼き菓子たち"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=800&auto=format&fit=crop",
+      "caption": "記念日を彩る特注のアニバーサリーケーキ"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1519869325930-281384150729?q=80&w=800&auto=format&fit=crop",
+      "caption": "みずみずしいシャインマスカットのタルト"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1550617931-e17a7b70dce2?q=80&w=800&auto=format&fit=crop",
+      "caption": "木漏れ日が差し込む落ち着いた店内"
+    }
+  ]
+}

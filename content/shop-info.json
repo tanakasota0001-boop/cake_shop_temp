@@ -1,0 +1,12 @@
+{
+  "title": "Shop Information",
+  "subtitle": "店舗情報・アクセス",
+  "shopName": "Patisserie Fleur (パティスリー フルール)",
+  "address": "〒150-0001 東京都渋谷区神宮前1-2-3 フルールビル 1F",
+  "tel": "03-1234-5678",
+  "email": "info@patisserie-fleur.example.com",
+  "hours": "10:00 - 19:00 (生ケーキは無くなり次第終了)",
+  "closed": "毎週火曜日、第二水曜日",
+  "access": "JR山手線「原宿駅」竹下口より徒歩5分 / 東京メトロ千代田線・副都心線「明治神宮前駅」5番出口より徒歩3分",
+  "googleMapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.8280303868614!2d139.7016358!3d35.669385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188ca7eb14a4d1%3A0xc3cf9c98bcbc890!2sTokyo!5e0!3m2!1sen!2sjp!4v1700000000000!5m2!1sen!2sjp"
+}
