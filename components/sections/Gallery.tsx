@@ -48,7 +48,7 @@ export const Gallery = () => {
 
         {/* 画像グリッド */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
-          {galleryData.images.map((image, index) => (
+          {galleryData.images.map((image: any, index) => (
             <div
               key={index}
               onClick={() => openModal(index)}
@@ -56,7 +56,7 @@ export const Gallery = () => {
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={image.url}
+                src={image.url || image.image}
                 alt={image.caption}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
@@ -131,7 +131,7 @@ export const Gallery = () => {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={galleryData.images[selectedImgIndex].url}
+              src={galleryData.images[selectedImgIndex].url || (galleryData.images[selectedImgIndex] as any).image}
               alt={galleryData.images[selectedImgIndex].caption}
               className="max-w-full max-h-[70vh] object-contain rounded-lg shadow-2xl animate-fade-in"
             />
