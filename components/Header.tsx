@@ -12,40 +12,37 @@ export const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 60);
     };
-
+    // 初期ロード時にも状態を同期
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // ページ遷移時やアンカークリック時にメニューを閉じる
   const handleLinkClick = () => {
     setIsMenuOpen(false);
   };
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
         isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-md py-3 text-stone-800"
-          : "bg-primary/95 backdrop-blur-xs py-4 text-white"
+          ? "bg-white/90 backdrop-blur-lg border-b border-stone-100/80 shadow-sm py-3"
+          : "bg-transparent py-5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
+
           {/* ロゴ / 店舗名 */}
           <div className="flex-shrink-0">
             <Link
               href="/"
-              className={`text-xl font-bold tracking-widest transition-colors duration-300 ${
+              className={`font-bold tracking-[0.2em] uppercase transition-all duration-500 text-lg sm:text-xl ${
                 isScrolled
-                  ? "text-primary hover:text-primary/80"
-                  : "text-white hover:text-accent/90"
+                  ? "text-primary"
+                  : "text-white drop-shadow-md"
               }`}
             >
               {siteConfig.shopName}
@@ -53,21 +50,30 @@ export const Header = () => {
           </div>
 
           {/* PC向けナビゲーション */}
-          <nav className="hidden lg:flex space-x-6">
+          <nav className="hidden lg:flex items-center space-x-1">
             {siteConfig.navigation.map((item, index) => {
-              // ブログ詳細ページなどからトップのアンカーへ戻るためのリンク
               const isActive = pathname === item.path;
               return (
                 <Link
                   key={index}
                   href={item.path}
-                  className={`text-sm font-medium tracking-wider transition-colors py-2 ${
+                  className={`relative text-xs font-medium tracking-[0.12em] uppercase px-3 py-2 rounded-md transition-all duration-300 group ${
                     isScrolled
-                      ? `text-stone-600 hover:text-primary ${isActive ? "font-bold text-primary" : ""}`
-                      : `text-white/90 hover:text-white ${isActive ? "font-bold text-accent" : ""}`
+                      ? isActive
+                        ? "text-primary"
+                        : "text-stone-500 hover:text-primary"
+                      : isActive
+                        ? "text-white font-semibold"
+                        : "text-white/80 hover:text-white"
                   }`}
                 >
                   {item.label}
+                  {/* アクティブ時のアンダーライン */}
+                  <span
+                    className={`absolute bottom-0.5 left-3 right-3 h-px bg-current transition-transform duration-300 origin-left ${
+                      isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                    }`}
+                  />
                 </Link>
               );
             })}
@@ -81,47 +87,17 @@ export const Header = () => {
               className={`inline-flex items-center justify-center p-2 rounded-md focus:outline-none transition-colors duration-300 ${
                 isScrolled
                   ? "text-stone-600 hover:text-primary"
-                  : "text-white hover:text-accent"
+                  : "text-white hover:text-white/70"
               }`}
               aria-controls="mobile-menu"
               aria-expanded={isMenuOpen}
             >
               <span className="sr-only">メニューを開く</span>
-              {isMenuOpen ? (
-                // 閉じるアイコン (X)
-                <svg
-                  className="block h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              ) : (
-                // ハンバーガーアイコン
-                <svg
-                  className="block h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              )}
+              <div className="w-5 h-4 flex flex-col justify-between">
+                <span className={`block h-px w-full bg-current transition-all duration-300 ${isMenuOpen ? "rotate-45 translate-y-[7px]" : ""}`} />
+                <span className={`block h-px w-full bg-current transition-all duration-300 ${isMenuOpen ? "opacity-0" : ""}`} />
+                <span className={`block h-px w-full bg-current transition-all duration-300 ${isMenuOpen ? "-rotate-45 -translate-y-[9px]" : ""}`} />
+              </div>
             </button>
           </div>
         </div>
@@ -129,22 +105,29 @@ export const Header = () => {
 
       {/* スマホ向けモバイルメニュー */}
       <div
-        className={`lg:hidden transition-all duration-300 overflow-hidden ${
-          isMenuOpen ? "max-h-screen opacity-100 bg-white" : "max-h-0 opacity-0 pointer-events-none"
+        className={`lg:hidden transition-all duration-400 ease-in-out overflow-hidden ${
+          isMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0 pointer-events-none"
         }`}
         id="mobile-menu"
       >
-        <div className="px-2 pt-2 pb-4 space-y-1 sm:px-3 shadow-inner bg-stone-50 border-t border-stone-100">
-          {siteConfig.navigation.map((item, index) => (
-            <Link
-              key={index}
-              href={item.path}
-              onClick={handleLinkClick}
-              className="block px-3 py-3 rounded-md text-base font-medium text-stone-700 hover:text-primary hover:bg-stone-100 transition-colors"
-            >
-              {item.label}
-            </Link>
-          ))}
+        <div className="bg-white/95 backdrop-blur-lg border-t border-stone-100 px-4 pt-3 pb-5 space-y-0.5">
+          {siteConfig.navigation.map((item, index) => {
+            const isActive = pathname === item.path;
+            return (
+              <Link
+                key={index}
+                href={item.path}
+                onClick={handleLinkClick}
+                className={`flex items-center px-3 py-3 rounded-lg text-sm font-medium tracking-wider transition-colors ${
+                  isActive
+                    ? "text-primary bg-primary/5"
+                    : "text-stone-600 hover:text-primary hover:bg-stone-50"
+                }`}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </header>
