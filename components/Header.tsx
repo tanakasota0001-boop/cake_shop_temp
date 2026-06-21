@@ -29,7 +29,7 @@ export const Header = () => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
         isScrolled
           ? "bg-white/90 backdrop-blur-lg border-b border-stone-100/80 shadow-sm py-3"
-          : "bg-transparent py-5"
+          : "bg-gradient-to-b from-black/50 via-black/20 to-transparent py-5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -42,7 +42,7 @@ export const Header = () => {
               className={`font-bold tracking-[0.2em] uppercase transition-all duration-500 text-lg sm:text-xl ${
                 isScrolled
                   ? "text-primary"
-                  : "text-white drop-shadow-md"
+                  : "text-white [text-shadow:0_2px_8px_rgba(0,0,0,0.5)]"
               }`}
             >
               {siteConfig.shopName}
@@ -63,8 +63,8 @@ export const Header = () => {
                         ? "text-primary"
                         : "text-stone-500 hover:text-primary"
                       : isActive
-                        ? "text-white font-semibold"
-                        : "text-white/80 hover:text-white"
+                        ? "text-white font-semibold [text-shadow:0_1px_6px_rgba(0,0,0,0.5)]"
+                        : "text-white/90 hover:text-white [text-shadow:0_1px_6px_rgba(0,0,0,0.4)]"
                   }`}
                 >
                   {item.label}
