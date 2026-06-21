@@ -32,8 +32,8 @@ export const Header = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-primary shadow-lg py-3 text-white"
-          : "bg-primary/90 backdrop-blur-xs py-4 text-white"
+          ? "bg-white/95 backdrop-blur-md shadow-md py-3 text-stone-800"
+          : "bg-primary/95 backdrop-blur-xs py-4 text-white"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -42,7 +42,11 @@ export const Header = () => {
           <div className="flex-shrink-0">
             <Link
               href="/"
-              className="text-xl font-bold tracking-widest text-white transition-colors duration-300 hover:text-accent/90"
+              className={`text-xl font-bold tracking-widest transition-colors duration-300 ${
+                isScrolled
+                  ? "text-primary hover:text-primary/80"
+                  : "text-white hover:text-accent/90"
+              }`}
             >
               {siteConfig.shopName}
             </Link>
@@ -57,8 +61,10 @@ export const Header = () => {
                 <Link
                   key={index}
                   href={item.path}
-                  className={`text-sm font-medium tracking-wider hover:text-accent transition-colors py-2 text-white/90 hover:text-white ${
-                    isActive ? "font-bold text-accent" : ""
+                  className={`text-sm font-medium tracking-wider transition-colors py-2 ${
+                    isScrolled
+                      ? `text-stone-600 hover:text-primary ${isActive ? "font-bold text-primary" : ""}`
+                      : `text-white/90 hover:text-white ${isActive ? "font-bold text-accent" : ""}`
                   }`}
                 >
                   {item.label}
@@ -72,7 +78,11 @@ export const Header = () => {
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md focus:outline-none transition-colors duration-300 text-white hover:text-accent"
+              className={`inline-flex items-center justify-center p-2 rounded-md focus:outline-none transition-colors duration-300 ${
+                isScrolled
+                  ? "text-stone-600 hover:text-primary"
+                  : "text-white hover:text-accent"
+              }`}
               aria-controls="mobile-menu"
               aria-expanded={isMenuOpen}
             >
