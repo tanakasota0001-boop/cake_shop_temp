@@ -62,16 +62,6 @@ export const Hero = () => {
             >
               {heroData.ctaText}
             </Button>
-
-            <button
-              onClick={() => {
-                const conceptSection = document.getElementById("concept");
-                if (conceptSection) conceptSection.scrollIntoView({ behavior: "smooth" });
-              }}
-              className="text-white/70 hover:text-white text-sm tracking-[0.15em] uppercase transition-colors duration-300 underline underline-offset-4 decoration-white/30 hover:decoration-white/70"
-            >
-              私たちについて
-            </button>
           </div>
         </div>
       </div>
