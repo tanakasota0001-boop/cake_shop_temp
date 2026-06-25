@@ -2,7 +2,7 @@
 title: "季節限定「マンゴーとパッションフルーツのタルト」が本日からスタート！"
 date: "2026-06-21"
 excerpt: "夏の訪れを告げる、ジューシーな完熟マンゴーを贅沢に使用した季節限定タルトが本日よりショーケースに並びます。甘酸っぱいパッションフルーツクリームとの相性抜群です。"
-thumbnail: "https://images.unsplash.com/photo-1519869325930-281384150729?q=80&w=800&auto=format&fit=crop"
+thumbnail: "https://images.unsplash.com/photo-1623670640497-0f7fa2ee09bc?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8JUU1JUFFJThDJUU3JTg2JTlGJUUzJTgzJTlFJUUzJTgzJUIzJUUzJTgyJUI0JUUzJTgzJUJDJUUzJTgxJUE4JUUzJTgzJTkxJUUzJTgzJTgzJUUzJTgyJUI3JUUzJTgzJUE3JUUzJTgzJUIzJUUzJTgzJTk1JUUzJTgzJUFCJUUzJTgzJUJDJUUzJTgzJTg0JUUzJTgxJUFFJUUzJTgyJUJGJUUzJTgzJUFCJUUzJTgzJTg4fGVufDB8MHwwfHx8MA%3D%3D"
 ---
 
 いつもパティスリーフルールをご利用いただき、誠にありがとうございます。

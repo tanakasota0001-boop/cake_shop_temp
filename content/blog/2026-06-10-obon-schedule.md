@@ -2,7 +2,7 @@
 title: "お盆期間中の営業スケジュールおよび振替休日のお知らせ"
 date: "2026-06-10"
 excerpt: "8月のお盆期間中の営業スケジュールが決定いたしましたのでお知らせいたします。お盆期間中（8月11日〜8月16日）は休まず営業いたします。"
-thumbnail: "https://images.unsplash.com/photo-1550617931-e17a7b70dce2?q=80&w=800&auto=format&fit=crop"
+thumbnail: "https://images.unsplash.com/photo-1505804750389-62ac45da38b7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTg2fHwlRTMlODIlQjElRTMlODMlQkMlRTMlODIlQUR8ZW58MHwwfDB8fHww"
 ---
 
 いつもパティスリーフルールをご利用いただき、誠にありがとうございます。

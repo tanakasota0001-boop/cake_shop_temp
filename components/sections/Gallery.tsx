@@ -47,9 +47,6 @@ export const Gallery = () => {
               {galleryData.subtitle}
             </h2>
           </div>
-          <p className="text-stone-500 text-sm tracking-wide hidden sm:block">
-            クリックで拡大
-          </p>
         </div>
 
         {/* 画像グリッド (不均等レイアウト) */}
