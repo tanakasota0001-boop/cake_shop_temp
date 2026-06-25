@@ -10,6 +10,12 @@ export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
+  // ヒーロー画像があるのはトップページのみ。それ以外は常に不透明ヘッダー
+  const isHeroPage = pathname === "/";
+
+  // 実際に適用するスタイル: ヒーローページ以外は常に「スクロール済み」と同等
+  const showSolid = !isHeroPage || isScrolled;
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 80);
@@ -26,9 +32,9 @@ export const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-in-out ${
-        isScrolled
+        showSolid
           ? "bg-[#fdfbf7]/95 backdrop-blur-xl border-b border-stone-200/60 shadow-[0_1px_20px_rgba(0,0,0,0.04)] py-3"
-          : "bg-transparent py-6"
+          : "bg-gradient-to-b from-black/50 via-black/20 to-transparent py-6"
       }`}
     >
       <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
@@ -39,7 +45,7 @@ export const Header = () => {
             <Link
               href="/"
               className={`font-bold tracking-[0.28em] uppercase transition-all duration-700 text-base sm:text-lg ${
-                isScrolled
+                showSolid
                   ? "text-stone-800"
                   : "text-white [text-shadow:0_1px_12px_rgba(0,0,0,0.4)]"
               }`}
@@ -57,7 +63,7 @@ export const Header = () => {
                   key={index}
                   href={item.path}
                   className={`relative text-[0.68rem] font-medium tracking-[0.16em] uppercase px-3.5 py-2 transition-all duration-300 group ${
-                    isScrolled
+                    showSolid
                       ? isActive
                         ? "text-primary"
                         : "text-stone-500 hover:text-stone-900"
@@ -69,7 +75,7 @@ export const Header = () => {
                   {item.label}
                   <span
                     className={`absolute bottom-0.5 left-3.5 right-3.5 h-px transition-all duration-400 origin-left ${
-                      isScrolled ? "bg-primary" : "bg-white"
+                      showSolid ? "bg-primary" : "bg-white"
                     } ${
                       isActive ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-60"
                     }`}
@@ -85,7 +91,7 @@ export const Header = () => {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               type="button"
               className={`p-2 focus:outline-none transition-colors duration-300 ${
-                isScrolled
+                showSolid
                   ? "text-stone-700 hover:text-primary"
                   : "text-white hover:text-white/70"
               }`}

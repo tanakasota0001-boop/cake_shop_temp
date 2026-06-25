@@ -74,8 +74,8 @@ export default async function BlogPostDetail({ params }: PostParams) {
   const htmlContent = marked(content);
 
   return (
-    <article className="pt-20 py-16 sm:py-24 bg-white min-h-screen">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+    <article className="pt-28 sm:pt-36 pb-16 sm:pb-24 bg-[#fdfbf7] min-h-screen">
+      <div className="max-w-3xl mx-auto px-6 lg:px-10 space-y-10">
         {/* 一覧に戻るリンク */}
         <div className="text-left">
           <Link
